@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.zip.ZipException;
 
 public class Main {
-    static String ProcessDir = "./example/iflyos_assistant.apk";
+    static String ProcessDir = "./example/app/eye.apk";
     static String AndroidJar = "./libs/android.jar";
     static String TargetMethod = "<java.net.URL: void <init>(java.lang.String)>";
     static List<Integer> RegIndex;
