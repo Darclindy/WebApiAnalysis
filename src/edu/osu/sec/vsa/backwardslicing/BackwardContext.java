@@ -25,6 +25,7 @@ import soot.jimple.ReturnStmt;
 import soot.jimple.Stmt;
 import soot.jimple.StringConstant;
 import soot.jimple.VirtualInvokeExpr;
+import soot.jimple.internal.JArrayRef;
 import soot.jimple.internal.JAssignStmt;
 import soot.jimple.internal.JNewExpr;
 import soot.jimple.internal.JimpleLocal;
@@ -124,13 +125,7 @@ public class BackwardContext extends AbstractStmtSwitch implements StmtPath, ICo
 		} else {
 			List<BackwardContext> newBc = new ArrayList<BackwardContext>();		//分支
 			BackwardContext tmp;
-/*
-			System.out.println(this.hashCode() + this.getCurrentMethod().toString());
-			System.out.println(this.hashCode() + this.getCurrentMethod().retrieveActiveBody().toString());
-			System.out.println(this.hashCode() + this.getCurrentBlock().toString());
 
-
- */
 			CompleteBlockGraph cbg = BlockGenerator.getInstance().generate(this.getCurrentMethod().retrieveActiveBody());
 			if (cbg.getHeads().contains(this.getCurrentBlock())) {		//判断是不是头块
 				GlobalStatistics.getInstance().countBackWard2Caller();	//如果是，找到调用它的block
@@ -166,6 +161,7 @@ public class BackwardContext extends AbstractStmtSwitch implements StmtPath, ICo
 				// Logger.print("33333");
 				List<Block> bs = new ArrayList<Block>();
 				bs.addAll(cbg.getPredsOf(this.getCurrentBlock()));	//将所有前继加到临时bs列表
+
 				BlockGenerator.removeCircleBlocks(bs, this.getCurrentBlock(), cbg);	//循环块
 
 				if (bs.size() == 0) {	//单循环块
@@ -489,7 +485,10 @@ public class BackwardContext extends AbstractStmtSwitch implements StmtPath, ICo
 			this.getIntrestedVariable().add(((CastExpr) value).getOp());
 		} else if (value instanceof StringConstant) {
 
-		} else {
+		} else if (value instanceof JArrayRef) {
+			this.getIntrestedVariable().add(((JArrayRef) value).getBase());
+		}
+		else {
 			Logger.printW(String.format("[%s] [Can't Handle caseAssignStmt->RightOp]: %s (%s)", this.hashCode(), stmt, value.getClass()));
 		}
 
@@ -547,6 +546,10 @@ public class BackwardContext extends AbstractStmtSwitch implements StmtPath, ICo
 				}
 			}
 
+		} else if(mthSig.equals("<org.json.JSONObject: java.lang.String getString(java.lang.String)>")){	//跟一根看看效果
+			this.addIntrestedVariable(((VirtualInvokeExpr) invokExp).getBase());
+		} else if(mthSig.equals("<org.json.JSONObject: org.json.JSONObject getJSONObject(java.lang.String)>")){
+			this.addIntrestedVariable(((VirtualInvokeExpr) invokExp).getBase());
 		}
 		/*else if(mthSig.equals("<android.content.Intent: java.lang.String getStringExtra(java.lang.String)>")){	//对于getStringExtra这类函数，需要恢复对应的putExtra函数操作
 			//设想：新增新的putExtra的ValuePoint

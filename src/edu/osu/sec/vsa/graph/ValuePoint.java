@@ -198,8 +198,6 @@ public class ValuePoint implements IDGNode {
 			}
 		}
 
-
-
 	}
 
 	@Override
@@ -214,13 +212,14 @@ public class ValuePoint implements IDGNode {
 		List<StmtPoint> sps = StmtPoint.findCaller(signature);//找到调用语句的位置
 		ValuePoint tmp;
 
-/*
+
 		for (StmtPoint sp : sps) {
 			tmp = new ValuePoint(dg, sp.getMethod_location(), sp.getBlock_location(), sp.getInstruction_location(), regIndex);
 			vps.add(tmp);
 		}
 
- */
+
+/*
 
 		int i=0;
 		for (StmtPoint sp : sps){
@@ -239,6 +238,9 @@ public class ValuePoint implements IDGNode {
 				System.out.println(tmp.getBlock_location().getBody().toString());
 			}
 		}
+
+ */
+
 
 
 

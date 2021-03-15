@@ -13,6 +13,7 @@ import org.json.JSONObject;
 
 import soot.Scene;
 import soot.Value;
+import soot.jimple.parser.node.TStrictfp;
 import soot.options.Options;
 import brut.androlib.AndrolibException;
 import edu.osu.sec.vsa.base.GlobalStatistics;
@@ -116,14 +117,28 @@ public class Main {
 		}
 
 
+		for (ValuePoint vp : allvps) {
+			tmp = vp.toJson();
+			if (tmp.has("ValueSet")){
+				Logger.print(tmp.getJSONArray("ValueSet").toString());
+			}
+
+
+			result.append("ValuePoints", vp.toJson());
+		}
+
+		wf(result.toString());		//将JSONObjeact输出到目标文件
+
 		//输出http信息
 		Vector<String> list = new Vector<String>();
-		for(ValuePoint vp : allvps){
-			for(HashMap<Integer, HashSet<String>> var : vp.getResult()){
-				for(int i : var.keySet()){
-					for(String s : var.get(i)){
-						if(s.contains("http") && !list.contains(s))
-							list.add(s);
+		for(Object vp : dg.getNodes()){
+			if(vp instanceof ValuePoint){
+				for(HashMap<Integer, HashSet<String>> var : ((ValuePoint) vp).getResult()){
+					for(int i : var.keySet()){
+						for(String s : var.get(i)){
+							if(s.contains("http") && !list.contains(s))
+								list.add(s);
+						}
 					}
 				}
 			}
@@ -133,24 +148,9 @@ public class Main {
 			System.out.println(temp);
 		}
 
-		for (ValuePoint vp : allvps) {
-			tmp = vp.toJson();
-
-			/*
-			if (tmp.has("ValueSet")){
-				Logger.print(tmp.getJSONArray("ValueSet").toString());
-			}
-			 */
-
-			result.append("ValuePoints", vp.toJson());
-		}
-
-
-
-		wf(result.toString());		//将JSONObjeact输出到目标文件
-
-
 	}
+
+
 
 	public static void wf(String content) {
 		FileUtility.wf(Config.RESULTDIR + ApkContext.getInstance().getPackageName(), content, false);
