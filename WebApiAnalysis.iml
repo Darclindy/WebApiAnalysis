@@ -18,55 +18,28 @@
     <orderEntry type="jdk" jdkName="JavaSE-1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
-      <library name="axml-2.0.jar">
+      <library>
         <CLASSES>
-          <root url="file:///soot-infoflow-android/lib/axml-2.0.jar" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="AXMLPrinter2.jar">
-        <CLASSES>
-          <root url="file:///soot-infoflow-android/lib/AXMLPrinter2.jar" />
+          <root url="jar://$MODULE_DIR$/libs/ValueSetAnalysis.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="file:///soot-infoflow-android/D:/Tools/AXMLPrinter2.source" />
+          <root url="jar://$MODULE_DIR$/libs/ValueSetAnalysis.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="apktool-lib_fat.jar">
+      <library>
         <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/android.jar!/" />
+          <root url="jar://$MODULE_DIR$/libs/apktool_2.3.0.jar!/" />
           <root url="jar://$MODULE_DIR$/libs/apktool-lib_fat.jar!/" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/../../FlowDroid-2.8/soot-infoflow/lib" />
-        </CLASSES>
-        <JAVADOC />
         <SOURCES>
-          <root url="file://$MODULE_DIR$/../../FlowDroid-2.8/soot-infoflow/lib" />
-        </SOURCES>
-        <jarDirectory url="file://$MODULE_DIR$/../../FlowDroid-2.8/soot-infoflow/lib" recursive="false" />
-        <jarDirectory url="file://$MODULE_DIR$/../../FlowDroid-2.8/soot-infoflow/lib" recursive="false" type="SOURCES" />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../LeakScope-master/ValueSetAnalysis.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="jar://$MODULE_DIR$/../../LeakScope-master/ValueSetAnalysis.jar!/" />
+          <root url="jar://$MODULE_DIR$/libs/apktool_2.3.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/libs/apktool-lib_fat.jar!/" />
+          <root url="jar://$MODULE_DIR$/libs/apktool-lib_fat.jar!/src/main/java" />
         </SOURCES>
       </library>
     </orderEntry>
