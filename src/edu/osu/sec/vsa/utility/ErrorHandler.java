@@ -23,7 +23,7 @@ public class ErrorHandler implements UncaughtExceptionHandler {
 			sb.append("     " + st.toString());
 			sb.append('\n');
 		}
-		wf(sb.toString());
+		wf(sb.toString(),true);
 		Logger.printE(sb.toString());
 
 	}

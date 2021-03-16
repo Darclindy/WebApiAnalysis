@@ -101,4 +101,8 @@ public class DGraph {
 		result.put("edges", jedges);
 		return result;
 	}
+
+	public void clearNodes(){
+		this.nodes.clear();
+	}
 }
