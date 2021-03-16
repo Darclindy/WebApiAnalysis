@@ -2,8 +2,9 @@ package edu.osu.sec.vsa.utility;
 
 public class Logger {
 	public static String TAG = "Logger";
+	public static Object printw;
 
-	public static void printI(String args) {
+    public static void printI(String args) {
 		System.out.println(TAG + args);
 	}
 

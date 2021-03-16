@@ -2,6 +2,8 @@ package edu.osu.sec.vsa.utility;
 
 import java.lang.Thread.UncaughtExceptionHandler;
 
+import static edu.osu.sec.vsa.main.Main.wf;
+
 public class ErrorHandler implements UncaughtExceptionHandler {
 	String tag;
 
@@ -21,7 +23,9 @@ public class ErrorHandler implements UncaughtExceptionHandler {
 			sb.append("     " + st.toString());
 			sb.append('\n');
 		}
+		wf(sb.toString());
 		Logger.printE(sb.toString());
+
 	}
 
 }

@@ -33,14 +33,11 @@ public class BlockGenerator {
 		}
 		boolean isc = false;
 		//自己加的
-		if(removeCount >= 200000000){
+		if(removeCount >= 20000000){
 			return false;
 		}
 		//自己加的
 		history.add(current);
-		//自己加的
-		removeCount += 1;
-		//自己加的
 		for (Block blk : cbg.getPredsOf(current)) {		//遍历前继，如果有前继等于它的后继，说明是一个循环块
 			if (b == blk)
 				isc = true;
@@ -50,7 +47,9 @@ public class BlockGenerator {
 				return isc;
 		}
 		history.remove(current);
-
+		//自己加的
+		removeCount += 1;
+		//自己加的
 		return isc;
 	}
 

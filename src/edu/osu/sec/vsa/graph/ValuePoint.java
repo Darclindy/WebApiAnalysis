@@ -188,7 +188,11 @@ public class ValuePoint implements IDGNode {
 	@Override
 	public void initIfHavenot() {
 		inited = true;
-		Logger.print("------------------------------------------------------------------+++++++++++++++++++++++++++++++++++++++++++"+this.getBlock_location().toString());
+
+		System.out.println("++++++++++++++++++++++++");
+		System.out.println(this.getBlock_location().toString());
+		System.out.println("++++++++++++++++++++++++");
+
 		bcs = BackwardController.getInstance().doBackWard(this, dg);//后向切片
 
 		for(BackwardContext bc : bcs){
@@ -213,34 +217,33 @@ public class ValuePoint implements IDGNode {
 		ValuePoint tmp;
 
 
+
 		for (StmtPoint sp : sps) {
 			tmp = new ValuePoint(dg, sp.getMethod_location(), sp.getBlock_location(), sp.getInstruction_location(), regIndex);
 			vps.add(tmp);
 		}
 
 
+/*
+		int i=0;
+		for (StmtPoint sp : sps){
+			System.out.println(i++ + ":" + sp.getBlock_location().toString());
+		}
 
+		if(index < 0) {
+			Scanner sc = new Scanner(System.in);
+			System.out.println("请输入序号：");
+			index = sc.nextInt();
+			if (index >= 0) {
+				StmtPoint sp = sps.get(index);
+				tmp = new ValuePoint(dg, sp.getMethod_location(), sp.getBlock_location(), sp.getInstruction_location(), regIndex);
+				vps.add(tmp);
 
-//		int i=0;
-//		for (StmtPoint sp : sps){
-//			System.out.println(i++ + ":" + sp.getBlock_location().toString());
-//		}
-//
-//		if(index < 0) {
-//			Scanner sc = new Scanner(System.in);
-//			System.out.println("请输入序号：");
-//			index = sc.nextInt();
-//			if (index >= 0) {
-//				StmtPoint sp = sps.get(index);
-//				tmp = new ValuePoint(dg, sp.getMethod_location(), sp.getBlock_location(), sp.getInstruction_location(), regIndex);
-//				vps.add(tmp);
-//
-//				System.out.println(tmp.getBlock_location().getBody().toString());
-//			}
-//		}
+				System.out.println(tmp.getBlock_location().getBody().toString());
+			}
+		}
 
-
-
+*/
 
 
 

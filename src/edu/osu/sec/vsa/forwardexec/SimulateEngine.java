@@ -182,20 +182,22 @@ public class SimulateEngine extends AbstractStmtSwitch {
 					transferValuesAndAppend(stmt, ((VirtualInvokeExpr) vie).getBase(), leftop, vie.getArg(0), true, false);
 				} else if (msig.equals("<android.content.Context: java.lang.String getString(int)>") || msig.equals("<android.content.res.Resources: java.lang.String getString(int)>")) {
 					GlobalStatistics.getInstance().countGetString();
-					if (vie.getArg(0) instanceof IntConstant) {		//如果变量是int型整数
-						setInitValue(leftop, ApkContext.getInstance().findResource(((IntConstant) vie.getArg(0)).value), false);
-					} else if (this.getCurrentValues().get(vie.getArg(0)).size() > 0) {
-						for (String str : (HashSet<String>) this.getCurrentValues().get(vie.getArg(0)).clone()) {
-							this.getCurrentValues().remove(leftop);
-							if (OtherUtility.isInt(str)) {
-								setInitValue(leftop, ApkContext.getInstance().findResource(Integer.parseInt(str)), true);
-							} else {
-								Logger.printW(String.format("[%s] [SIMULATE][arg value not int getString(VirtualInvokeExpr)]: %s (%s)", this.hashCode(), stmt, str));
+
+						if (vie.getArg(0) instanceof IntConstant) {        //如果变量是int型整数
+							setInitValue(leftop, ApkContext.getInstance().findResource(((IntConstant) vie.getArg(0)).value), false);
+						} else if (this.getCurrentValues().get(vie.getArg(0)).size() > 0) {
+							for (String str : (HashSet<String>) this.getCurrentValues().get(vie.getArg(0)).clone()) {
+								this.getCurrentValues().remove(leftop);
+								if (OtherUtility.isInt(str)) {
+									setInitValue(leftop, ApkContext.getInstance().findResource(Integer.parseInt(str)), true);
+								} else {
+									Logger.printW(String.format("[%s] [SIMULATE][arg value not int getString(VirtualInvokeExpr)]: %s (%s)", this.hashCode(), stmt, str));
+								}
 							}
+						} else {
+							Logger.printW(String.format("[%s] [SIMULATE][arg not int getString(VirtualInvokeExpr)]: %s (%s)", this.hashCode(), stmt, vie.getArg(0).getClass()));
 						}
-					} else {
-						Logger.printW(String.format("[%s] [SIMULATE][arg not int getString(VirtualInvokeExpr)]: %s (%s)", this.hashCode(), stmt, vie.getArg(0).getClass()));
-					}
+
 				} else if (msig.equals("<java.lang.StringBuilder: java.lang.String toString()>")) {
 					transferValues(((VirtualInvokeExpr) vie).getBase(), leftop);
 				} else if (msig.equals("<java.lang.String: java.lang.String trim()>")) {

@@ -34,10 +34,12 @@ public class Main {
 			public void run() {
 				try {
 					Thread.sleep(sec * 1000);
+
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				wf("TimeOut!!!");
 				System.exit(0);
 			}
 		};
@@ -66,9 +68,9 @@ public class Main {
 		Options.v().set_allow_phantom_refs(true);	//表示是否加载未被解析的类
 		Options.v().set_output_format(Options.output_format_none);//设置输出的格式，此处设置为不输出，因此不会输出反编译后的jimple文件
 		Options.v().ignore_resolution_errors();
-		Scene.v().loadNecessaryClasses();		// //使用soot反编译dex文件，并将反编译后的文件加载到内存中
+		Scene.v().loadNecessaryClasses();        // //使用soot反编译dex文件，并将反编译后的文件加载到内存中
 
-
+		startWatcher(Config.TIMEOUT);
 		CallGraph.init();						//生成函数调用图
 		//startWatcher(20);
 
@@ -108,26 +110,25 @@ public class Main {
 
 		dg.solve(allvps);//		反向切片
 
-
+		/*
 		JSONObject result = new JSONObject();
-
-
-		for (IDGNode tn : dg.getNodes()) {
+			for (IDGNode tn : dg.getNodes()) {
 			Logger.print(tn.toString());//打印Dgragh中各个节点的信息，包括类名，方法，语句，能否抵达，前驱，BackwardContexts
 		}
 
-
 		for (ValuePoint vp : allvps) {
 			tmp = vp.toJson();
+
 			if (tmp.has("ValueSet")){
 				Logger.print(tmp.getJSONArray("ValueSet").toString());
 			}
 
-
 			result.append("ValuePoints", vp.toJson());
 		}
+		*/
 
-		wf(result.toString());		//将JSONObjeact输出到目标文件
+		//wf(result.toString());		//将JSONObjeact输出到目标文件
+
 
 		//输出http信息
 		Vector<String> list = new Vector<String>();
@@ -144,9 +145,14 @@ public class Main {
 			}
 		}
 
+
+		String OutPut = "";
 		for(String temp : list){
+			OutPut += temp;
+			OutPut += "\n";
 			System.out.println(temp);
 		}
+		wf(OutPut);
 
 	}
 
