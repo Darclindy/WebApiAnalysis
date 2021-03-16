@@ -59,5 +59,16 @@
         <jarDirectory url="file://$MODULE_DIR$/../../FlowDroid-2.8/soot-infoflow/lib" recursive="false" type="SOURCES" />
       </library>
     </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../LeakScope-master/ValueSetAnalysis.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/../../LeakScope-master/ValueSetAnalysis.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
   </component>
 </module>

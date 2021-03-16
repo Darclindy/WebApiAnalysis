@@ -24,7 +24,7 @@ import soot.jimple.infoflow.android.resources.ARSCFileParser;
 
 
 import soot.jimple.infoflow.android.resources.ARSCFileParser;
-import soot.jimple.infoflow.android.data.AndroidMemoryManager;
+//import soot.jimple.infoflow.android.data.AndroidMemoryManager;
 
 public class Main {
     static String ProcessDir = "./example/app/eye.apk";
@@ -36,7 +36,7 @@ public class Main {
     static ARSCFileParser asrc = null;
     static ProcessManifest mfest = null;
     static ResPackage[] resps = null;		//brut.androlib.res.data
-    static AndroidMemoryManager amm = null;
+    //static AndroidMemoryManager amm = null;
 
 
     public static void main(String[] arg) throws IOException, AndrolibException {

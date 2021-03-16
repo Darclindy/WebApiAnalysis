@@ -61,7 +61,13 @@ public class FunctionUtility {
 			}
 			do {
 				for (int i = 0; i < len; i++) {
-					obj[i] = vs[i].get(indexes[i]);
+					//在这里加一个判断，有的参数是还原不出来的,防止
+					if(vs[i].size() > 0){
+						obj[i] = vs[i].get(indexes[i]);
+					} else{
+						obj[i] = "";
+					}
+
 				}
 				se.setInitValue(leftop, String.format(formt, obj), true);
 			} while (move2Next(maxIndex, indexes));

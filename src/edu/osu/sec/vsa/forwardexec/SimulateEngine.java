@@ -31,6 +31,7 @@ import soot.jimple.StringConstant;
 import soot.jimple.VirtualInvokeExpr;
 import soot.jimple.infoflow.android.axml.ApkHandler;
 import soot.jimple.internal.JInterfaceInvokeExpr;
+import sun.rmi.runtime.Log;
 
 public class SimulateEngine extends AbstractStmtSwitch {
 	DGraph dg;
@@ -213,7 +214,12 @@ public class SimulateEngine extends AbstractStmtSwitch {
 					}
 				} else if (msig.equals("<java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>")) {
 					GlobalStatistics.getInstance().countFormatString();
-					FunctionUtility.String_format(this, leftop, vie);
+					try{
+						FunctionUtility.String_format(this, leftop, vie);
+					} catch (Exception e){
+						Logger.print(e.toString());
+					}
+
 				}
 				else if(msig.equals("<android.content.Intent: java.lang.String getStringExtra(java.lang.String)>")){
 					setInitValue(leftop,"getStringExtra : " + ((VirtualInvokeExpr) vie).getArg(0).toString(),false);	//暂时先把key输出出来，做个标记下来

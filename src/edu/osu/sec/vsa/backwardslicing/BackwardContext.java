@@ -598,6 +598,8 @@ public class BackwardContext extends AbstractStmtSwitch implements StmtPath, ICo
 					this.addIntrestedVariable(arg);
 				}
 			}
+		} else if(mthSig.equals("<org.json.JSONObject: org.json.JSONObject put(java.lang.String,java.lang.Object)>")){
+			this.addIntrestedVariable(invokExp.getArg(1));
 		}
 		else {
 			if (!diveIntoMethodCall(restAssignTo, leftisIntrested, invokExp)) {
