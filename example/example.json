@@ -1,11 +1,11 @@
+
 {
-  "apk":["example/app/eye.apk","example/app/water.apk"],
+  "apk":["example/app/water.apk"],
   "methods":
     [
       {
         "method":"<java.net.URL: void <init>(java.lang.String)>",
         "parmIndexs":[0]
       }
-
     ]
 }

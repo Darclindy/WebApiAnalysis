@@ -69,7 +69,12 @@ public class Main {
 			Options.v().set_allow_phantom_refs(true);    //表示是否加载未被解析的类
 			Options.v().set_output_format(Options.output_format_none);//设置输出的格式，此处设置为不输出，因此不会输出反编译后的jimple文件
 			Options.v().ignore_resolution_errors();
-			Scene.v().loadNecessaryClasses();        // //使用soot反编译dex文件，并将反编译后的文件加载到内存中
+			try {
+				Scene.v().loadNecessaryClasses();        // //使用soot反编译dex文件，并将反编译后的文件加载到内存中
+			} catch (Exception e){
+				Logger.printW("LoadNecessaryClasses failed");
+				continue;
+			}
 
 			startWatcher(Config.TIMEOUT);
 			CallGraph.init();                        //生成函数调用图
@@ -84,7 +89,6 @@ public class Main {
 			JSONObject tmp;
 
 			for (Object jobj : targetMethds.getJSONArray("methods")) {
-
 				tmp = (JSONObject) jobj;
 				tsig = tmp.getString("method");    //遍历输入json文件的method的三字节码
 				regIndex = new ArrayList<Integer>();
@@ -100,14 +104,19 @@ public class Main {
 
 			wf("====>" + ApkContext.apkcontext.getPackageName() + " <====\n", false);
 			Vector<String> list = new Vector<String>();        //储存获得的http信息
+			try{
+				dg.solve(allvps);
+			} catch (Exception e){
+				wf("Error dg",true);
+			}
+			finally {
+				printHttp(dg, list);
+			}
 
-			dg.solve(allvps);
-			printHttp(dg, list);
 
 		}
 
 	}
-
 
 
 	public static void wf(String content,boolean append) {

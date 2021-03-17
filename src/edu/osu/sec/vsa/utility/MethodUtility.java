@@ -59,10 +59,15 @@ public class MethodUtility {
 				ms.add(sc.getMethod(subSig));
 			}
 		} catch (Exception e) {
+			;
 		}
 
-		if (sc.toString().equals("java.lang.Object")) {
-			return;
+		try{
+			if (sc.toString().equals("java.lang.Object")) {			//奇怪的报错
+				return;
+			}
+		} catch (Exception e){
+			;
 		}
 
 		if (sc.getSuperclass() != sc) {
