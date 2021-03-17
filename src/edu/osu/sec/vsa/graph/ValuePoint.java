@@ -146,7 +146,7 @@ public class ValuePoint implements IDGNode {
 	@Override
 	public void solve() {
 		solved = true;
-		//Logger.print("[SOLVING ME]" + this.hashCode());
+		Logger.print("[SOLVING ME]" + this.hashCode());
 		SimulateEngine tmp;
 		for (BackwardContext var : this.getBcs()) {
 			tmp = new SimulateEngine(dg, var);
@@ -290,10 +290,10 @@ public class ValuePoint implements IDGNode {
 			for (Stmt stmt : tmp.getExecTrace()) {
 				sb.append("    " + stmt + "\n");
 			}
-			// sb.append(" i:");
-			// for (Value iv : tmp.getIntrestedVariable()) {
-			// sb.append(" " + iv + "\n");
-			// }
+			sb.append(" i:");
+			for (Value iv : tmp.getIntrestedVariable()) {
+			sb.append(" " + iv + "\n");
+			}
 		}
 		sb.append("ValueSet: \n");
 		for (HashMap<Integer, HashSet<String>> resl : result) {

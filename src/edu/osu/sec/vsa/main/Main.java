@@ -94,7 +94,6 @@ public class Main {
 				}
 
 				vps = ValuePoint.find(dg, tsig, regIndex); //目标方法作为第一个ValuePoint,进入DGragh,
-
 				allvps.addAll(vps);
 			}
 
@@ -102,20 +101,9 @@ public class Main {
 			wf("====>" + ApkContext.apkcontext.getPackageName() + " <====\n", false);
 			Vector<String> list = new Vector<String>();        //储存获得的http信息
 
+			dg.solve(allvps);
+			printHttp(dg, list);
 
-			for (ValuePoint vp : allvps) {    //一个一个节点去solve
-				List<ValuePoint> vpc = new ArrayList<ValuePoint>();
-				vpc.add(vp);
-				try {
-					dg.solve(allvps);
-					printHttp(dg, list);
-				} catch (Exception e) {
-					Logger.printW("  Catch exception in \n" + vpc.get(0).getBlock_location().toString() + "\n");
-				} finally {
-					dg.clearNodes();
-				}
-
-			}
 		}
 
 	}

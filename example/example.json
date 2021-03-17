@@ -1,5 +1,5 @@
 {
-  "apk":["example/app/eye.apk","example/app/water.apk","example/app/wps.apk"],
+  "apk":["example/app/eye.apk","example/app/water.apk"],
   "methods":
     [
       {

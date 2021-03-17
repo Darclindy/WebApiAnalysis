@@ -61,8 +61,8 @@ public class HeapObject implements IDGNode {
 	public void solve() {
 		// TODO Auto-generated method stub
 		solved = true;
-		//Logger.print("[HEAP SOLVE]" + sootField);
-		//Logger.print("[SOLVING ME]" + this.hashCode());
+		Logger.print("[HEAP SOLVE]" + sootField);
+		Logger.print("[SOLVING ME]" + this.hashCode());
 
 		for (ValuePoint vp : vps) {
 			ArrayList<HashMap<Integer, HashSet<String>>> vpResult = vp.getResult();
