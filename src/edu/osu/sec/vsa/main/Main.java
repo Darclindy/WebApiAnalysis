@@ -46,10 +46,30 @@ public class Main {
 		t.setDaemon(true);
 		t.start();
 	}
+	public static List<String> getAllFile(String directoryPath, boolean isAddDirectory) throws IOException {
+		List<String> list = new ArrayList<String>();
+		File baseFile = new File(directoryPath);
+		if (baseFile.isFile() || !baseFile.exists()) {
+			return list;
+		}
+		File[] files = baseFile.listFiles();
+		for (File file : files) {
+			if (file.isDirectory()) {
+				if(isAddDirectory){
+					list.add("example/" + file.getName());
+				}
+				list.addAll(getAllFile(file.getAbsolutePath(),isAddDirectory));
+			} else {
+				list.add(file.getName()); //这是垃圾代码……
+			}
+		}
+		return list;
+	}
+
 
 	public static void main(String[] args) throws ZipException, IOException, AndrolibException {
 		initDirs();		//新建output，log文件。
-
+		List<String> allOutPutFile = getAllFile("./valuesetResult",false);
 		Config.ANDROID_JAR_DIR = args[0];//arg0为android.jar包的路径
 		
 		targetMethds = new JSONObject(new String(Files.readAllBytes(Paths.get(args[1]))));//arg1为json文件路径，读取信息,并转换为json格式
@@ -57,6 +77,11 @@ public class Main {
 		for(Object apk : apks) {
 			Thread.setDefaultUncaughtExceptionHandler(new ErrorHandler(args[0]));//设置异常处理
 			ApkContext apkcontext = ApkContext.getInstance((String) apk);//创建apkContext对象，path成员初始化
+			/*
+			if(allOutPutFile.contains(ApkContext.apkcontext.getPackageName())){	//如果有重复输出，则跳过该文件
+				continue;
+			}
+			*/
 			Logger.TAG = apkcontext.getPackageName();
 
 			soot.G.reset();            //soot.G.reset()是一个标准的soot操作，用于清空soot之前所有操作遗留下的缓存值
@@ -73,6 +98,7 @@ public class Main {
 				Scene.v().loadNecessaryClasses();        // //使用soot反编译dex文件，并将反编译后的文件加载到内存中
 			} catch (Exception e){
 				Logger.printW("LoadNecessaryClasses failed");
+				wf("LoadNecessaryClasses failed",true);
 				continue;
 			}
 
@@ -112,8 +138,6 @@ public class Main {
 			finally {
 				printHttp(dg, list);
 			}
-
-
 		}
 
 	}

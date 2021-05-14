@@ -2,11 +2,14 @@
   <artifact type="jar" name="WebApiAnalysis:jar">
     <output-path>$PROJECT_DIR$/classes/artifacts/WebApiAnalysis_jar</output-path>
     <root id="archive" name="WebApiAnalysis.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/meta/META-INF/MANIFEST.MF" />
+      </element>
       <element id="module-output" name="WebApiAnalysis" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/libs/ValueSetAnalysis.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/libs/android.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/libs/apktool_2.3.0.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/libs/apktool-lib_fat.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/ValueSetAnalysis.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

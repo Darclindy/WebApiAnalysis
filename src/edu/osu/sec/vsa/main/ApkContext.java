@@ -2,6 +2,9 @@ package edu.osu.sec.vsa.main;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 import java.util.zip.ZipException;
 
 import brut.androlib.AndrolibException;
@@ -48,6 +51,12 @@ public class ApkContext {
 
 		return null;
 	}
+
+	public Set<String> getPermission(){
+		return mfest.getPermissions();
+	}
+
+
 
 	/*
 	 * public String getIdentifier(String name, String type, String packageName)

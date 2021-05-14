@@ -188,19 +188,23 @@ public class ValuePoint implements IDGNode {
 	@Override
 	public void initIfHavenot() {
 		inited = true;
-
+/*
 		System.out.println("++++++++++++++++++++++++");
 		System.out.println(this.getBlock_location().toString());
 		System.out.println("++++++++++++++++++++++++");
 
-		bcs = BackwardController.getInstance().doBackWard(this, dg);//后向切片
 
+ */
+		bcs = BackwardController.getInstance().doBackWard(this, dg);//后向切片
+/*
 		for(BackwardContext bc : bcs){
 			System.out.println("==============================");
 			for(Block bk : bc.getBlockes()){
 				System.out.println(bk.toString());
 			}
 		}
+
+ */
 
 	}
 

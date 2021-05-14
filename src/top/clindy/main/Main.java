@@ -68,8 +68,6 @@ public class Main {
         CallGraph.init();       //生成函数调用图
 
 
-        System.out.println("Process Start!");
-
         FindURL();
         //PrintBlock();
         /*
