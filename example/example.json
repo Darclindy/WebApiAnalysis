@@ -1,6 +1,6 @@
 
 {
-  "apk":["example/app/water.apk","example/app/com.qiyi.video.apk"],
+  "apk":["example/app/eye.apk"],
   "methods":
     [
       {

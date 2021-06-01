@@ -90,21 +90,22 @@ public class ApkContext {
 		return "-1";
 	}
 
-	public void init() throws ZipException, IOException, AndrolibException {
+	public void init() throws IOException, AndrolibException {
 		apkh = new ApkHandler(path);
-
 		afp = new ARSCFileParser();
 		afp.parse(apkh.getInputStream("resources.arsc"));
 		try {
 			mfest = new ProcessManifest(apkh.getInputStream("AndroidManifest.xml"));
 		} catch (Exception e) {
 		}
-		ExtFile apkFile = new ExtFile(new File(path));
-
+		File apkFile = new ExtFile(new File(path));
+/*
 		AndrolibResources res = new AndrolibResources();
-		ResTable resTab = res.getResTable(apkFile, true);
-		resps = res.getResPackagesFromApk(apkFile, resTab, true);
+		ResTable resTab = res.getResTable((ExtFile) apkFile, true);
+		resps = res.getResPackagesFromApk((ExtFile) apkFile, resTab, true);
 		apkh.close();
+
+ */
 	}
 
 	public String findResource(int id) {

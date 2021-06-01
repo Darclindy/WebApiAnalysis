@@ -77,11 +77,11 @@ public class Main {
 		for(Object apk : apks) {
 			Thread.setDefaultUncaughtExceptionHandler(new ErrorHandler(args[0]));//设置异常处理
 			ApkContext apkcontext = ApkContext.getInstance((String) apk);//创建apkContext对象，path成员初始化
-			/*
+
 			if(allOutPutFile.contains(ApkContext.apkcontext.getPackageName())){	//如果有重复输出，则跳过该文件
 				continue;
 			}
-			*/
+
 			Logger.TAG = apkcontext.getPackageName();
 
 			soot.G.reset();            //soot.G.reset()是一个标准的soot操作，用于清空soot之前所有操作遗留下的缓存值

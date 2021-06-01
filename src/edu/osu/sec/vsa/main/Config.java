@@ -14,5 +14,6 @@ public class Config {
 
 	public static String PERMISSION = "./permission/";
 	public static String PERMISSIONDIR = "./example/permission.json";	//权限
+	public static String SENSITIVEDIR = "./example/sensitive.json";
 
 }

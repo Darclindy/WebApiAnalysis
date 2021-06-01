@@ -1,0 +1,20 @@
+{
+  "android.permission.DOWNLOAD_WITHOUT_NOTIFICATION":"允许下载应用无需通知",
+  "android.permission.RECORD_VIDEO":"允许录制视频",
+  "android.permission.CAPTURE_AUDIO_OUTPUT":"允许程序录音",
+  "android.permission.CHANGE_WIFI_MULTICAST_STATE":"允许改变WIFI状态",
+  "android.permission.CALL_PHONE":"允许程序访拨打电话",
+  "android.permission.PACKAGE_USAGE_STATS":"提供给应用手机相关组件的使用统计",
+  "android.permission.READ_EXTERNAL_STORAGE":"程序可以读取设备外部存储空间的文件",
+  "android.permission.WRITE_SMS":"允许程序写短信",
+  "android.permission.WRITE_SETTINGS":"允许程序读取或写入系统设置",
+  "android.permission.WRITE_HISTORY_BOOKMARKS":"允许应用写用户的浏览器历史和书签",
+  "android.permission.READ_HISTORY_BOOKMARKS":"允许应用读用户的浏览器历史和书签",
+  "android.permission.RECORD_AUDIO":"允许程序录制音频",
+  "android.permission.READ_CONTACTS":"允许程序读取用户联系人数据",
+  "android.permission.READ_CALENDAR":"允许程序读取用户日历数据",
+  "android.permission.INJECT_EVENTS":"允许一个程序截获用户事件如按键、触摸、轨迹球等等到一个时间流",
+  "android.permission.GLOBAL_SEARCH":"可以被内容提供者用来允许使用全程搜索他们的数据",
+  "android.permission.BRICK":"请求能够禁用设备",
+  "android.permission.ACCESS_FINE_LOCATION":"允许一个程序访问精良位置(如GPS)"
+}
